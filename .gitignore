@@ -1,0 +1,19 @@
+# Compiled object files
+*.o
+*.obj
+*.exe
+*.out
+
+# Visual Studio Code files
+.vscode/
+
+# Backup files
+*~
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git ignores itself
+.gitignore
