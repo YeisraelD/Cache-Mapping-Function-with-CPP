@@ -86,12 +86,17 @@ int main() {
                     victimCache[vReplace].valid = true;
                 }
 
-                
+                mainCache[mainReplace].blockNumber = block;
+                mainCache[mainReplace].valid = true;
             }
-
 
         }
     }
 
+    cout << "\n Results \n";
+    cout << "Hits in main cache: "<< hits<< endl;
+    cout << "Hits in victim cache: "<< victimHits<< endl;
+    cout << "Misses: " << misses<< endl;
+    
     return 0;
 }
