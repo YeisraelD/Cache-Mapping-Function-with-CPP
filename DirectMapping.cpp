@@ -1,7 +1,6 @@
 #include<iostream>
 #include <vector>
 using namespace std;
-
 struct CacheLine{
     int blockNumber;
     bool Valid; // by this flag i will ensure later that
@@ -46,8 +45,8 @@ int main()
 
     cout << "\nResults:\n";
     cout << "Hits: "<< hits<< endl;
-    cout << "Misses: "<< misses<< endl;
-    cout << "Conflict Misses: " << conflictMisses << endl;
-    
+    cout << "Misses: "<< misses<< endl; // this increaces the access time, and reduce performance
+    cout << "Conflict Misses: " << conflictMisses << endl; // the major disadvantage of direct mapping
+
     return 0;
 }

@@ -18,7 +18,8 @@ int findBlock(vector<CacheLine> &cache, int block){
 int main() {
     int mainCacheSize =4; //main cache lines
     int victimCacheSize =2; //victim cache lines , to reduce conflict misses
-    vector<int> memoryAccesses = { 64, 128, 64, 128, 64, 129, 64};
+    vector<int> memoryAccesses = {1, 9, 1, 9, 17, 1, 9, 17, 1};
+
 
     vector<CacheLine> mainCache(mainCacheSize, {-1, false});
     vector<CacheLine> victimCache(victimCacheSize, {-1, false});
@@ -93,10 +94,11 @@ int main() {
         }
     }
 
+    cout << "\n Simulation Finished \n";
     cout << "\n Results \n";
     cout << "Hits in main cache: "<< hits<< endl;
     cout << "Hits in victim cache: "<< victimHits<< endl;
     cout << "Misses: " << misses<< endl;
-    
+
     return 0;
 }
