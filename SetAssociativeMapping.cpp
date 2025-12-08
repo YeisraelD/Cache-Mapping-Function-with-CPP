@@ -24,5 +24,58 @@ int main () {
 
     cout << "2-Ways Set Associativity Cache Simulation\n\n ";
 
-    
+    for(int block : memoryAccesses){
+        int setIndex =  block % numSets;  // here basically it inherits the technique of direct mapping
+        timestamp++;
+
+        cout << " Accessing Block: " << block
+            << " ->Set: "<<setIndex << " ";
+
+        bool hit = false;
+        int  emptyWay = -1;
+        int lruWay =0;
+        int minUsed = cache[setIndex][0].lastUsed;
+
+        for (int w =0; w<ways;w++){
+            if (cache[setIndex][w].valid && cache[setIndex][w].blockNumber==block){
+                // if the tag matches , i mean hit
+                hit = true;
+                hits++;
+                cache[setIndex][w].lastUsed = timestamp;
+                cout << "(HIT in way " << w <<" )\n";
+                break;
+            }
+            if (!cache[setIndex][w].valid){
+                emptyWay =w;
+
+            } if (cache[setIndex][w].lastUsed<minUsed){
+                minUsed = cache[setIndex][w].lastUsed;
+                lruWay = w;
+            }
+        }
+
+        if (!hit){
+            misses ++;
+            if (emptyWay != -1){
+                cout << "(MISS - Empty Way) \n";
+                cache[setIndex][emptyWay] = {block, true, timestamp};
+
+            } else {
+                conflictMisses++;
+                cout << "(CONFLICT MISS - Evict Block "
+                    << cache[setIndex][lruWay].blockNumber
+                    <<" from way " << lruWay << ")\n";
+
+                cache[setIndex][lruWay] ={block, true, timestamp};
+        
+            }
+        }
+
+    }
+
+    cout << "\n Results \n";
+    cout << "Hits: "<< hits<< endl;
+    cout << "Misses: "<< misses<< endl;
+    cout << "Conflict Misses: "<< conflictMisses<< endl;
+    return 0;
 }
