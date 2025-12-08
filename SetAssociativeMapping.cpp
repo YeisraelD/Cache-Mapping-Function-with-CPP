@@ -54,6 +54,7 @@ int main () {
             }
         }
 
+
         if (!hit){
             misses ++;
             if (emptyWay != -1){
@@ -76,6 +77,6 @@ int main () {
     cout << "\n Results \n";
     cout << "Hits: "<< hits<< endl;
     cout << "Misses: "<< misses<< endl;
-    cout << "Conflict Misses: "<< conflictMisses<< endl;
+    cout << "Conflict Misses: "<< conflictMisses<< endl; // can see here the reduction of this
     return 0;
 }
